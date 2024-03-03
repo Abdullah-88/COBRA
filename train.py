@@ -163,7 +163,7 @@ def test(dataloader, model, loss_fn):
 
 # apply train and test
 
-logname = "/home/abdullah/Desktop/Proposals_experiments/COBRA/Experiments_cifar10/logs_cobra/logs_cifar10.csv"
+logname = "/PATH/COBRA/Experiments_cifar10/logs_cobra/logs_cifar10.csv"
 if not os.path.exists(logname):
   with open(logname, 'w') as logfile:
     logwriter = csv.writer(logfile, delimiter=',')
@@ -175,9 +175,7 @@ epochs = 100
 for epoch in range(epochs):
     print(f"Epoch {epoch+1}\n-----------------------------------")
     train_loss, train_acc = train(train_dataloader, model, loss_fn, optimizer)
-    # learning rate scheduler
-    #if scheduler is not None:
-    #    scheduler.step()
+    
     test_loss, test_acc = test(test_dataloader, model, loss_fn)
     with open(logname, 'a') as logfile:
         logwriter = csv.writer(logfile, delimiter=',')
@@ -187,7 +185,7 @@ print("Done!")
 
 # saving trained model
 
-path = "/home/abdullah/Desktop/Proposals_experiments/COBRA/Experiments_cifar10/weights_cobra"
+path = "/PATH/COBRA/Experiments_cifar10/weights_cobra"
 model_name = "COBRAImageClassification_cifar10"
 torch.save(model.state_dict(), f"{path}/{model_name}.pth")
 print(f"Saved Model State to {path}/{model_name}.pth ")
